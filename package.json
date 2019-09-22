@@ -1,0 +1,34 @@
+{
+  "name": "search-saver",
+  "version": "1.0.0",
+  "description": "Search Other APIs and save the results for later use",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdiHasani/Search-Saver.git"
+  },
+  "author": "Adnan Hasani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdiHasani/Search-Saver/issues"
+  },
+  "homepage": "https://github.com/AdiHasani/Search-Saver#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.2.2",
+    "express": "^4.17.1",
+    "express-validator": "^6.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.7.1",
+    "twitter": "^1.7.1"
+  },
+  "devDependencies": {
+    "chalk": "^2.4.2",
+    "concurrently": "^4.1.2",
+    "nodemon": "^1.19.2"
+  }
+}
