@@ -14,7 +14,7 @@ app.use('/api/v1/users', require('./routes/users'));
 app.use('/api/v1/search', require('./routes/search'));
 app.use('/api/v1/auth', require('./routes/auth'));
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () =>
   console.log(
