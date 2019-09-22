@@ -1,7 +1,10 @@
 const express = require('express');
 const chalk = require('chalk');
+const connectDB = require('./config/database');
 
 const app = express();
+
+connectDB();
 
 // Initializing Middleware
 app.use(express.json({ extended: false }));
