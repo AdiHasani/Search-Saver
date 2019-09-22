@@ -1,5 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const chalk = require('chalk');
+const auth = require('../middleware/auth');
+const SaveSearch = require('../models/SaveSearch');
+const SaveQuery = require('../models/SaveQuery');
+const SaveAllQueries = require('../models/SaveAllQueries');
 
 /**********************************************
  * @desc        Middlewear for Twitter Search
@@ -11,11 +16,32 @@ router.use('/tweets', require('./search/twitter'));
  * @desc        Get all saved searches
  * @access      Private
  *************************************/
-router.get('/', (req, res) => {
-  res.send({
-    message:
-      'This endpoint will get all saved searches, privat and public queries!'
-  });
+router.get('/', auth, async (req, res) => {
+  try {
+    const searches = await SaveSearch.find({ user: req.user.id }).sort({
+      date: -1
+    });
+
+    const allQueries = await SaveAllQueries.find({}).sort({
+      date: -1
+    });
+    const queries = await SaveQuery.find({ user: req.user.id }).sort({
+      date: -1
+    });
+
+    res.status(200).send({
+      data: searches,
+      queries,
+      allQueries
+    });
+  } catch (error) {
+    console.log(
+      chalk.white.bgRed(
+        ` Error in '/' GET ./routes/search.js: ${error.message} `
+      )
+    );
+    res.status(500).send('Server Error!');
+  }
 });
 
 /************************************
@@ -23,8 +49,30 @@ router.get('/', (req, res) => {
  * @desc        Save a search
  * @access      Private
  *********************************/
-router.post('/', (req, res) => {
-  res.send({ message: 'This endpoint will save a search!' });
+router.post('/', auth, async (req, res) => {
+  const { createdAt, text, tweetURL, type, twitterUser } = req.body.search;
+
+  try {
+    const newSearch = new SaveSearch({
+      user: req.user.id,
+      createdAt,
+      text,
+      tweetURL,
+      type,
+      twitterUser
+    });
+
+    const search = await newSearch.save();
+
+    res.json(search);
+  } catch (error) {
+    console.log(
+      chalk.white.bgRed(
+        ` Error in '/' POST ./routes/search.js: ${error.message} `
+      )
+    );
+    res.status(500).send('Server Error!');
+  }
 });
 
 /****************************************
@@ -33,7 +81,7 @@ router.post('/', (req, res) => {
  * @access      Private
  ****************************************/
 router.put('/:id', (req, res) => {
-  res.send({ message: 'This endpoint will update a search!' });
+  res.send({ message: 'This endpoint will update a search query!' });
 });
 
 /*****************************************
@@ -42,7 +90,7 @@ router.put('/:id', (req, res) => {
  * @access      Private
  *****************************************/
 router.delete('/:id', (req, res) => {
-  res.send({ message: 'This endpoint will delete a search!' });
+  res.send({ message: 'This endpoint will delete a search query!' });
 });
 
 module.exports = router;
