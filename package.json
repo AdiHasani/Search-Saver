@@ -5,7 +5,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "react": "npm start --prefix react-app",
+    "dev": "concurrently \"npm run server\" \"npm run react\""
   },
   "repository": {
     "type": "git",
