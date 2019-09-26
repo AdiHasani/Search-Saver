@@ -1,25 +1,25 @@
-import React from 'react'
+import React from 'react';
 
 const Navbar = () => {
   return (
-    <nav class="nav-extended blue">
+    <nav className="nav-extended blue">
       <div className="nav-wrapper container">
         <a href="#!" className="brand-logo">
           Search<span className="white blue-text r-p">Saver</span>
         </a>
-        <ul class="right">
+        <ul className="right">
           <li>
             <a
               href="#!"
-              class="waves-effect waves-light btn blue modal-trigger"
+              className="waves-effect waves-light btn blue modal-trigger"
             >
               Home
             </a>
           </li>
           <li>
             <a
-              href="#!"
-              class="waves-effect waves-light btn blue modal-trigger"
+              href="#about-modal"
+              className="waves-effect waves-light btn blue modal-trigger"
             >
               About
             </a>
@@ -32,7 +32,7 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

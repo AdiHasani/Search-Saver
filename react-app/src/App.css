@@ -9493,9 +9493,33 @@ input[type=range]::-ms-thumb {
   margin-bottom: 2rem !important;
 }
 
+.ml-1 {
+  margin-left: 1rem !important;
+}
+
+.twitter-color,
+.twitter-color:hover {
+  background-color: #00acee;
+}
+
+.insta-color {
+  background: linear-gradient(153deg, rgba(81, 91, 212, 1) 0%, rgba(129, 52, 175, 1) 42%, rgba(221, 42, 123, 1) 100%);
+}
+
+.facebook-color,
+.facebook-color:hover {
+  background-color: #3b5998;
+}
+
 .auth-container {
-  margin: 0 auto;
-  max-width: 600px;
+  margin: auto;
+  max-width: 500px;
+  width: 90%;
+}
+
+.modal-container {
+  margin: auto;
+  max-width: 800px;
   width: 90%;
 }
 
