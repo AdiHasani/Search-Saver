@@ -2624,7 +2624,7 @@ a {
   align-items: center;
 }
 
-.clearfix {
+.clearfix::after {
   clear: both;
 }
 
@@ -5273,6 +5273,7 @@ small {
   background-color: #fff;
   margin: 0 auto;
   white-space: nowrap;
+  border-radius: 15px 15px 0 0;
 }
 
 .tabs.tabs-transparent {
@@ -5319,7 +5320,8 @@ small {
 }
 
 .tabs .tab a {
-  color: rgba(238, 110, 115, 0.7);
+  color: rgba(74, 20, 140, 0.65);
+  ;
   display: block;
   width: 100%;
   height: 100%;
@@ -5333,14 +5335,14 @@ small {
 
 .tabs .tab a:focus,
 .tabs .tab a:focus.active {
-  background-color: rgba(246, 178, 181, 0.2);
+  background-color: rgba(74, 20, 140, 0.05);
   outline: none;
 }
 
 .tabs .tab a:hover,
 .tabs .tab a.active {
   background-color: transparent;
-  color: #ee6e73;
+  color: #4a148c;
 }
 
 .tabs .tab.disabled a,
@@ -5353,7 +5355,7 @@ small {
   position: absolute;
   bottom: 0;
   height: 2px;
-  background-color: #f6b2b5;
+  background-color: #0d47a1;
   will-change: left, right;
 }
 
@@ -6032,7 +6034,7 @@ body.keyboard-focused .dropdown-content li:focus {
   width: 55%;
   margin: auto;
   overflow-y: auto;
-  border-radius: 2px;
+  border-radius: 5px;
   will-change: top, opacity;
 }
 
@@ -6419,7 +6421,7 @@ input[type=search]:not(.browser-default),
 textarea.materialize-textarea {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #9e9e9e;
+  border-bottom: 1px solid #0d47a1;
   border-radius: 0;
   outline: none;
   height: 3rem;
@@ -6509,9 +6511,9 @@ input[type=tel]:not(.browser-default):focus:not([readonly]),
 input[type=number]:not(.browser-default):focus:not([readonly]),
 input[type=search]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #26a69a;
-  -webkit-box-shadow: 0 1px 0 0 #26a69a;
-  box-shadow: 0 1px 0 0 #26a69a;
+  border-bottom: 1px solid #1a237e;
+  -webkit-box-shadow: 0 1px 0 0 #82b1ff;
+  box-shadow: 0 1px 0 0 #82b1ff;
 }
 
 input:not([type]):focus:not([readonly])+label,
@@ -6917,6 +6919,7 @@ textarea.materialize-textarea+label:after,
   transition: .3s background-color;
 }
 
+.nav-content .input-field input[type=search],
 .nav-wrapper .input-field input[type=search] {
   height: inherit;
   padding-left: 4rem;
@@ -9480,6 +9483,20 @@ input[type=range]::-ms-thumb {
 .r-p {
   border-radius: 1rem 1rem 0 1rem;
   padding: .2rem .5rem
+}
+
+.mt-2 {
+  margin-top: 2rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+
+.auth-container {
+  margin: 0 auto;
+  max-width: 600px;
+  width: 90%;
 }
 
 /* Preloder CSS */
