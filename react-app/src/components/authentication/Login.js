@@ -1,25 +1,46 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login, clearErrors } from '../../actions/authActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const Login = () => {
+const Login = ({ auth: { isAuthenticated, error }, login, clearErrors }) => {
   const [user, setUser] = useState({
     email: '',
     password: ''
   });
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      onLogin();
+    }
+
+    if (error === 'Please provide a valid username and password.') {
+      M.toast({ html: error });
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated]);
+
   const { email, password } = user;
 
+  const onLogin = () => <Redirect to="/" />;
+
   const onChange = e => {
-    console.log('value att:', e.target.value, 'name att:', e.target.name);
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const onSubmit = e => {
     e.preventDefault();
-    console.log(email);
+
     if (email === '' || password === '') {
       M.toast({ html: 'Please fill in all fields' });
     } else {
-      // TODO calling the action to login
+      login({
+        email,
+        password
+      });
     }
   };
 
@@ -52,11 +73,22 @@ const Login = () => {
         >
           {' '}
           Login {'  '}
-          <i className="fas fa-unlock-alt"></i>{' '}
+          <i className="fas fa-unlock-alt" />{' '}
         </button>
       </form>
     </Fragment>
   );
 };
 
-export default Login;
+Login.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { login, clearErrors }
+)(Login);

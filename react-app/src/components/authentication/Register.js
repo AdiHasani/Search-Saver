@@ -1,7 +1,15 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { register, clearErrors } from '../../actions/authActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const Register = () => {
+const Register = ({
+  auth: { isAuthenticated, error },
+  register,
+  clearErrors
+}) => {
   const [user, setUser] = useState({
     name: '',
     email: '',
@@ -9,6 +17,25 @@ const Register = () => {
     confirmPassword: ''
   });
   const { name, email, password, confirmPassword } = user;
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      onRegister();
+    }
+
+    if (
+      error ===
+      'An account with that email address already exists. Please login to continue.'
+    ) {
+      M.toast({ html: error });
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated]);
+
+  const onRegister = () => {
+    return <Redirect to="/" />;
+  };
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
@@ -19,7 +46,11 @@ const Register = () => {
     } else if (password !== confirmPassword) {
       M.toast({ html: 'Passwords do not match' });
     } else {
-      //TODO send post request to the server
+      register({
+        name,
+        email,
+        password
+      });
     }
   };
 
@@ -74,11 +105,22 @@ const Register = () => {
         >
           {' '}
           Register{'  '}
-          <i className="fas fa-database"></i>{' '}
+          <i className="fas fa-database" />{' '}
         </button>
       </form>
     </Fragment>
   );
 };
 
-export default Register;
+Register.propTypes = {
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { register, clearErrors }
+)(Register);
