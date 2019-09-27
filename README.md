@@ -62,13 +62,16 @@ In the location that you want to clone the repo point your terminal to that loca
     "twitterAccessTokenSecret": "Your_Twitter_Access_Token_SECRET"
     }
     ```
-4. `cd ..` &&  `npm run dev:init` 
+4. `cd ..` &&  `npm run dev:init`
+
 
 ## Development server
 
 Run `npm run dev` for a dev server that runs on port 4000 if you want to change the port you can do it in the `server.js` file in the root directory. The app will automatically reload if you change any of the source files.
-Default port is 3000 for the React APP. You can manualy open it by typing `http://localhost:3000/` in the browser. If you want to change the port depends on your enviorment but you can do it at react-app package.json by changing react script 
+Default port is 3000 for the React APP. You can manualy open it by typing `http://localhost:3000/` in the browser. If you want to change the port depends on your enviorment but you can do it at react-app package.json by changing react script:
+
 from: `"react": "react-scripts start",`
+
 to: `"react": "PORT=XXXX react-scripts start",`
 
 if this dosnt work for you try to create `.env.local` file in the react-app folder
