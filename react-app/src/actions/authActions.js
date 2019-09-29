@@ -19,7 +19,8 @@ const config = {
 };
 
 // Load User
-export const loadUser = () => async dispatch => {
+const loadUser = async dispatch => {
+  console.log('LoadUser was called');
   setLoading();
   if (localStorage.token) {
     setAuthToken(localStorage.token);
@@ -28,6 +29,7 @@ export const loadUser = () => async dispatch => {
   try {
     const res = await axios.get('/api/v1/auth');
 
+    console.log('loadUser:', res.data);
     dispatch({
       type: USER_LOADED,
       payload: res.data
@@ -48,7 +50,7 @@ export const register = formData => async dispatch => {
       payload: res.data
     });
 
-    loadUser();
+    loadUser(dispatch);
   } catch (err) {
     dispatch({
       type: REGISTER_FAIL,
@@ -61,7 +63,6 @@ export const register = formData => async dispatch => {
 export const login = formData => async dispatch => {
   setLoading();
   try {
-    console.log('Form Data:', formData, 'config:', config);
     const res = await axios.post('/api/v1/auth', formData, config);
 
     dispatch({
@@ -69,7 +70,7 @@ export const login = formData => async dispatch => {
       payload: res.data
     });
 
-    loadUser();
+    loadUser(dispatch);
   } catch (err) {
     dispatch({
       type: LOGIN_FAIL,
