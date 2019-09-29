@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Navbar from '../layout/Navbar';
 import Preloder from '../layout/Preloder';
 import SearchBtn from '../layout/SearchBtn';
@@ -7,7 +7,12 @@ import TwitterModal from '../search/twitter/TwitterModal';
 import InstagramModal from '../search/instagram/InstagramModal';
 import FacebookModal from '../search/facebook/FacebookModal';
 
+import M from 'materialize-css/dist/js/materialize.min.js';
+
 const Search = () => {
+  useEffect(() => {
+    M.AutoInit();
+  });
   return (
     <Fragment>
       <Navbar />
