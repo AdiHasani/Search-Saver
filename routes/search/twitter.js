@@ -3,7 +3,6 @@ const router = express.Router();
 const config = require('config');
 const Twitter = require('twitter');
 const auth = require('../../middleware/auth');
-const chalk = require('chalk');
 const SaveQuery = require('../../models/SaveQuery');
 const SaveAllQueries = require('../../models/SaveAllQueries');
 
@@ -21,7 +20,7 @@ router.post('/', auth, (req, res) => {
    *              for the user and in a global search terms table
    * @access      Private
    **************************************************************************/
-  
+
   const { q, result_type, count } = req.body.query;
 
   twitter.get(
@@ -57,11 +56,6 @@ router.post('/', auth, (req, res) => {
           data: tweetsRes
         });
       } else {
-        console.log(
-          chalk.white.bgRed(
-            ` Error in ./routes/twitter.js: ${error[0].message} `
-          )
-        );
         res.status(500).send('Server Error!');
       }
     }
