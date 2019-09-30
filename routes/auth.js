@@ -4,7 +4,6 @@ const bcrypt = require('bcryptjs');
 const auth = require('../middleware/auth');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const chalk = require('chalk');
 const { check, validationResult } = require('express-validator');
 
 const User = require('../models/User');
@@ -19,9 +18,6 @@ router.get('/', auth, async (req, res) => {
     const user = await User.findById(req.user.id).select('-password');
     res.status(200).json(user);
   } catch (error) {
-    // console.log(
-    //   chalk.white.bgRed(` Error in GET ./routes/auth.js: ${error.message} `)
-    // );
     res.status(500).send('Server Error');
   }
 });
@@ -78,9 +74,6 @@ router.post(
         }
       );
     } catch (error) {
-      // console.log(
-      //   chalk.white.bgRed(` Error in POST ./routes/users.js: ${error.message} `)
-      // );
       res.status(500).send('Server Error!');
     }
   }
