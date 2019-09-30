@@ -5,7 +5,7 @@ import { register, clearErrors } from '../../actions/authActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const Register = ({
-  auth: { isAuthenticated, error },
+  auth: { isAuthenticated, error, loading },
   props,
   register,
   clearErrors
@@ -20,6 +20,7 @@ const Register = ({
 
   useEffect(() => {
     if (isAuthenticated) {
+      M.toast({ html: 'Registration was successfull' });
       props.history.push('/');
     }
     if (
@@ -30,7 +31,7 @@ const Register = ({
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, isAuthenticated, props.history, clearErrors]);
 
   const onChange = e => setUser({ ...user, [e.target.name]: e.target.value });
 
@@ -46,7 +47,6 @@ const Register = ({
         email,
         password
       });
-      M.toast({ html: 'Registration was successfull' });
     }
   };
 
@@ -112,7 +112,11 @@ const Register = ({
         >
           {' '}
           Register{'  '}
-          <i className="fas fa-database" />{' '}
+          {loading ? (
+            <i className="fas fa-spinner btn-spiner"></i>
+          ) : (
+            <i className="fas fa-database" />
+          )}{' '}
         </button>
       </form>
     </Fragment>

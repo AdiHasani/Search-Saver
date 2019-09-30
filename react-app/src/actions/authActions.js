@@ -20,16 +20,15 @@ const config = {
 
 // Load User
 const loadUser = async dispatch => {
-  console.log('LoadUser was called');
-  setLoading();
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
 
   try {
+    dispatch(setLoading());
+
     const res = await axios.get('/api/v1/auth');
 
-    console.log('loadUser:', res.data);
     dispatch({
       type: USER_LOADED,
       payload: res.data
@@ -41,8 +40,9 @@ const loadUser = async dispatch => {
 
 // Register User
 export const register = formData => async dispatch => {
-  setLoading();
   try {
+    dispatch(setLoading());
+
     const res = await axios.post('/api/v1/users', formData, config);
 
     dispatch({
@@ -61,8 +61,9 @@ export const register = formData => async dispatch => {
 
 // Login User
 export const login = formData => async dispatch => {
-  setLoading();
   try {
+    dispatch(setLoading());
+
     const res = await axios.post('/api/v1/auth', formData, config);
 
     dispatch({
@@ -80,21 +81,21 @@ export const login = formData => async dispatch => {
 };
 
 // Logout
-export const logout = () => {
-  return {
+export const logout = () => dispatch => {
+  dispatch({
     type: LOGOUT
-  };
+  });
 };
 
 // Clear Errors
-export const clearErrors = () => {
-  return {
+export const clearErrors = () => dispatch => {
+  dispatch({
     type: CLEAR_ERRORS
-  };
+  });
 };
 
 // Set loading to true
-export const setLoading = () => {
+const setLoading = () => {
   return {
     type: SET_LOADING
   };

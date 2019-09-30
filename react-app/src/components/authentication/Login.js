@@ -5,7 +5,7 @@ import { login, clearErrors } from '../../actions/authActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const Login = ({
-  auth: { isAuthenticated, error },
+  auth: { isAuthenticated, error, loading },
   props,
   login,
   clearErrors
@@ -16,7 +16,7 @@ const Login = ({
   });
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && !loading) {
       props.history.push('/');
     }
 
@@ -25,7 +25,7 @@ const Login = ({
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated, props.history]);
+  }, [error, isAuthenticated, loading, props.history]);
 
   const { email, password } = user;
 
@@ -81,7 +81,11 @@ const Login = ({
         >
           {' '}
           Login {'  '}
-          <i className="fas fa-unlock-alt" />{' '}
+          {loading ? (
+            <i className="fas fa-spinner btn-spiner"></i>
+          ) : (
+            <i className="fas fa-unlock-alt" />
+          )}{' '}
         </button>
       </form>
     </Fragment>
