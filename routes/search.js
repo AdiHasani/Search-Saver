@@ -30,7 +30,7 @@ router.get('/', auth, async (req, res) => {
     });
 
     res.status(200).send({
-      data: searches,
+      searches,
       queries,
       allQueries
     });
