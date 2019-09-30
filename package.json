@@ -8,8 +8,9 @@
     "server": "nodemon server.js",
     "react": "npm start --prefix react-app",
     "dev": "concurrently \"npm run server\" \"npm run react\"",
-    "dev:init": "concurrently \"npm i\" \"npm i --prefix react-app\"",
+    "dev:init": "npm install && mkdir -p ./react-app/node_modules && npm install --prefix ./react-app",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix react-app && npm run build --prefix react-app"
+
   },
   "repository": {
     "type": "git",
