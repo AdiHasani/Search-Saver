@@ -27,7 +27,7 @@ const TwitterModal = ({
       searchTwitter(current);
       clearCurrent();
     }
-  }, [current]);
+  }, [current, searchTwitter, clearCurrent]);
 
   const onChange = e => setQuery({ ...query, [e.target.name]: e.target.value });
   const onSubmit = e => {

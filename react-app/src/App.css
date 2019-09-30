@@ -9480,6 +9480,10 @@ input[type=range]::-ms-thumb {
 
 /* MaterializedCSS end */
 
+body {
+  overflow-y: auto !important;
+}
+
 .r-p {
   border-radius: 1rem 1rem 0 1rem;
   padding: .2rem .5rem
@@ -9524,6 +9528,16 @@ input[type=range]::-ms-thumb {
   margin: auto;
   max-width: 500px;
   width: 90%;
+}
+
+.preloder-container {
+  margin: auto;
+  max-width: 200px;
+  width: 90%;
+}
+
+.search-card {
+  min-height: 300px;
 }
 
 .modal-container {

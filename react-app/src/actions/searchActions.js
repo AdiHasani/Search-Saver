@@ -62,8 +62,6 @@ export const searchTwitter = query => async dispatch => {
       payload: query
     });
   } catch (err) {
-    console.log(err);
-    console.log(err.response);
     dispatch({
       type: SEARCH_ERROR,
       payload: err.response.message
