@@ -1,11 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../../actions/authActions';
+import { clearSearches } from '../../actions/searchActions';
 import PropTypes from 'prop-types';
 
-const Navbar = ({ user, logout }) => {
+const Navbar = ({ user, search, logout, clearSearches }) => {
   const onLogout = () => {
     logout();
+  };
+
+  const onClearSearch = () => {
+    clearSearches();
   };
 
   return (
@@ -15,6 +20,13 @@ const Navbar = ({ user, logout }) => {
           Search<span className="white blue-text r-p">Saver</span>
         </a>
         <ul className="right">
+          {search.length > 0 && (
+            <li>
+              <a href="#!" onClick={onClearSearch}>
+                Clear Search
+              </a>
+            </li>
+          )}
           <li>
             <a href="#about-modal" className="modal-trigger">
               About
@@ -37,10 +49,11 @@ Navbar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  user: state.auth.user
+  user: state.auth.user,
+  search: state.search.search
 });
 
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, clearSearches }
 )(Navbar);
