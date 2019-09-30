@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const chalk = require('chalk');
+// const chalk = require('chalk');
 const connectDB = require('./config/database');
 
 const app = express();
