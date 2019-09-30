@@ -14,14 +14,14 @@ let twitter = new Twitter({
   access_token_secret: config.get('twitterAccessTokenSecret')
 });
 
-router.get('/', auth, (req, res) => {
+router.post('/', auth, (req, res) => {
   /**************************************************************************
    * @route       GET api/v1/search/tweets
    * @desc        Search Tweets in twitter API and Saving the search query
    *              for the user and in a global search terms table
    * @access      Private
    **************************************************************************/
-
+  
   const { q, result_type, count } = req.body.query;
 
   twitter.get(
