@@ -22,7 +22,6 @@ const QueryItem = ({ query, setCurrent }) => {
     M.toast({ html: `Searching for: ${query.q}` });
     e.stopPropagation();
   };
-  console.log('Query:', query);
   return (
     <li className="collection-item">
       <a

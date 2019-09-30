@@ -4,13 +4,11 @@ import PropTypes from 'prop-types';
 const SearchItem = ({ resData }) => {
   const onSaveSearch = e => {
     e.preventDefault();
+  };
 
-
-  }
-  console.log(resData);
   return (
-    <div class="col s12 m6">
-      <div className="card white mb-2">
+    <div className="col s12 m6">
+      <div className="card search-card white mb-2">
         <div className="card-content blue-text darken-4">
           <p className="card-title blue lighten-5 r-p">
             Twitter username:{' '}

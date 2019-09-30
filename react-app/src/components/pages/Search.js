@@ -9,25 +9,43 @@ import TwitterModal from '../search/twitter/TwitterModal';
 import InstagramModal from '../search/instagram/InstagramModal';
 import FacebookModal from '../search/facebook/FacebookModal';
 import { getData } from '../../actions/searchActions';
+import M from 'materialize-css';
+import SearchItem from '../search/twitter/SearchItem';
 
-const Search = ({ userData: { loading, data }, getData }) => {
+const Search = ({ userData: { loading, data, search }, getData }) => {
   useEffect(() => {
     getData();
+    M.AutoInit();
   }, [getData]);
 
   if (loading) {
     return <Preloder />;
+  } else {
+    M.AutoInit();
   }
 
   return (
     <Fragment>
       <Navbar />
       <div className="container">
-        <h3 className="center">Saved Searches</h3>
-        {data.searches.length === 0 ? (
-          <p className="center">You don't have saved searches</p>
+        {search.length !== 0 ? (
+          <Fragment>
+            <h3 className="center">Searches Result</h3>
+            <div className="row">
+              {search.map(res => (
+                <SearchItem resData={res} key={res._id} />
+              ))}
+            </div>
+          </Fragment>
         ) : (
-          data.searches.map(search => <p>Saved Search</p>)
+          <Fragment>
+            <h3 className="center">Saved Searches</h3>
+            {data.searches.length === 0 ? (
+              <p className="center">You don't have saved searches</p>
+            ) : (
+              data.searches.map(search => <p>Saved Search</p>)
+            )}
+          </Fragment>
         )}
         <SearchBtn />
         <AboutModal />
@@ -44,8 +62,7 @@ Search.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  userData: state.search,
-  auth: state.auth
+  userData: state.search
 });
 
 export default connect(
