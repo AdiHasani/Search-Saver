@@ -8,13 +8,13 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 const QueryItem = ({ query, setCurrent }) => {
   const onDelete = e => {
     e.preventDefault();
-    M.toast({ html: 'Deleted query' });
+    M.toast({ html: 'In my TODO list!' });
   };
   const onEdit = e => {
     e.preventDefault();
     e.stopPropagation();
 
-    M.toast({ html: 'Edited query' });
+    M.toast({ html: 'In my TODO list!' });
   };
   const onSubmit = e => {
     e.preventDefault();

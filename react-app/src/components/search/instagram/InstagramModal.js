@@ -3,7 +3,7 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 
 const InstagramModal = () => {
   const onSubmit = () => {
-    M.toast({ html: 'Under construction!' });
+    M.toast({ html: 'Closed!' });
   };
 
   return (
@@ -22,7 +22,7 @@ const InstagramModal = () => {
             onClick={onSubmit}
             className="modal-close waves-effect blue waves-light btn"
           >
-            Search
+            Close
           </a>
         </div>
       </div>

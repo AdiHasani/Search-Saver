@@ -41,7 +41,10 @@ const Search = ({ userData: { loading, data, search }, getData }) => {
           <Fragment>
             <h3 className="center">Saved Searches</h3>
             {data.searches.length === 0 ? (
-              <p className="center">You don't have saved searches</p>
+              <p className="center">
+                You don't have saved searches.
+                <br /> (I work on Saving ande Deleting Searches)
+              </p>
             ) : (
               data.searches.map(search => <p>Saved Search</p>)
             )}

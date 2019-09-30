@@ -50,7 +50,6 @@ export const searchTwitter = query => async dispatch => {
 
   try {
     dispatch(setLoading());
-    console.log('QUERYYYY:', query);
     const res = await axios.post('/api/v1/search/tweets', { query }, config);
 
     dispatch({

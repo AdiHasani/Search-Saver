@@ -3,7 +3,7 @@ import M from 'materialize-css/dist/js/materialize.min.js';
 
 const FacebookModal = () => {
   const onSubmit = () => {
-    M.toast({ html: 'Working on the case!' });
+    M.toast({ html: 'Mail me for good Search endpoint' });
   };
 
   return (
@@ -22,7 +22,7 @@ const FacebookModal = () => {
             onClick={onSubmit}
             className="modal-close waves-effect blue waves-light btn"
           >
-            Search
+            Close
           </a>
         </div>
       </div>
