@@ -12,11 +12,11 @@ const connectDB = async () => {
       useFindAndModify: false
     });
 
-    console.log(chalk.black.bgGreen(' Mongoose: Connected to MongoDB! '));
+    console.log(' Mongoose: Connected to MongoDB! '));
   } catch (error) {
-    console.log(
-      chalk.white.bgRed(` Error in ./config/database.js: ${error.message} `)
-    );
+    // console.log(
+    //   chalk.white.bgRed(` Error in ./config/database.js: ${error.message} `)
+    // );
     process.exit(1);
   }
 };

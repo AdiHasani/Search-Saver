@@ -35,10 +35,10 @@ router.get('/', auth, async (req, res) => {
       allQueries
     });
   } catch (error) {
-    console.log(
-      chalk.white.bgRed(
-        ` Error in '/' GET ./routes/search.js: ${error.message} `
-      )
+    // console.log(
+    //   chalk.white.bgRed(
+    //     ` Error in '/' GET ./routes/search.js: ${error.message} `
+    //   )
     );
     res.status(500).send('Server Error!');
   }
@@ -66,10 +66,10 @@ router.post('/', auth, async (req, res) => {
 
     res.json(search);
   } catch (error) {
-    console.log(
-      chalk.white.bgRed(
-        ` Error in '/' POST ./routes/search.js: ${error.message} `
-      )
+    // console.log(
+    //   chalk.white.bgRed(
+    //     ` Error in '/' POST ./routes/search.js: ${error.message} `
+    //   )
     );
     res.status(500).send('Server Error!');
   }

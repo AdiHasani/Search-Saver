@@ -19,9 +19,9 @@ router.get('/', auth, async (req, res) => {
     const user = await User.findById(req.user.id).select('-password');
     res.status(200).json(user);
   } catch (error) {
-    console.log(
-      chalk.white.bgRed(` Error in GET ./routes/auth.js: ${error.message} `)
-    );
+    // console.log(
+    //   chalk.white.bgRed(` Error in GET ./routes/auth.js: ${error.message} `)
+    // );
     res.status(500).send('Server Error');
   }
 });
@@ -78,9 +78,9 @@ router.post(
         }
       );
     } catch (error) {
-      console.log(
-        chalk.white.bgRed(` Error in POST ./routes/users.js: ${error.message} `)
-      );
+      // console.log(
+      //   chalk.white.bgRed(` Error in POST ./routes/users.js: ${error.message} `)
+      // );
       res.status(500).send('Server Error!');
     }
   }

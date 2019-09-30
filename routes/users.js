@@ -72,9 +72,9 @@ router.post(
         }
       );
     } catch (error) {
-      console.log(
-        chalk.white.bgRed(` Error in ./routes/users.js: ${error.message} `)
-      );
+      // console.log(
+      //   chalk.white.bgRed(` Error in ./routes/users.js: ${error.message} `)
+      // );
       res.status(500).send('Server Error!');
     }
   }

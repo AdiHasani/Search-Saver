@@ -57,10 +57,10 @@ router.post('/', auth, (req, res) => {
           data: tweetsRes
         });
       } else {
-        console.log(
-          chalk.white.bgRed(
-            ` Error in ./routes/twitter.js: ${error[0].message} `
-          )
+        // console.log(
+        //   chalk.white.bgRed(
+        //     ` Error in ./routes/twitter.js: ${error[0].message} `
+        //   )
         );
         res.status(500).send('Server Error!');
       }
