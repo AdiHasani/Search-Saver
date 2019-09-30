@@ -2,8 +2,10 @@ import axios from 'axios';
 import setAuthToken from '../utilities/setAuthToken';
 import {
   GET_DATA,
+  GET_SEARCHES,
   SAVE_SEARCH,
   DELETE_SEARCH,
+  UPDATE_STATE_QUERIES,
   SET_CURRENT,
   CLEAR_CURRENT,
   UPDATE_QUERY,
@@ -26,7 +28,7 @@ export const getData = () => async dispatch => {
   }
 
   try {
-    setLoading();
+    dispatch(setLoading());
     const res = await axios.get('/api/v1/search');
 
     dispatch({
@@ -34,6 +36,34 @@ export const getData = () => async dispatch => {
       payload: res.data
     });
   } catch (err) {
+    dispatch({
+      type: SEARCH_ERROR,
+      payload: err.response.message
+    });
+  }
+};
+
+export const searchTwitter = query => async dispatch => {
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+  }
+
+  try {
+    dispatch(setLoading());
+    console.log('QUERYYYY:', query);
+    const res = await axios.post('/api/v1/search/tweets', { query }, config);
+
+    dispatch({
+      type: GET_SEARCHES,
+      payload: res.data.data
+    });
+    dispatch({
+      type: UPDATE_STATE_QUERIES,
+      payload: query
+    });
+  } catch (err) {
+    console.log(err);
+    console.log(err.response);
     dispatch({
       type: SEARCH_ERROR,
       payload: err.response.message
@@ -109,8 +139,8 @@ export const clearFilter = () => dispatch => {
   dispatch({ type: CLEAR_FILTER });
 };
 
-export const setLoading = () => dispatch => {
-  dispatch({
+export const setLoading = () => {
+  return {
     type: SET_LOADING
-  });
+  };
 };
