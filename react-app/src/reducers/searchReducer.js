@@ -1,6 +1,6 @@
 import {
   GET_DATA,
-  ADD_SEARCH,
+  SAVE_SEARCH,
   DELETE_SEARCH,
   SET_CURRENT,
   CLEAR_CURRENT,
@@ -8,13 +8,31 @@ import {
   FILTER_SEARCHES,
   CLEAR_SEARCHES,
   CLEAR_FILTER,
-  SEARCH_ERROR
+  SEARCH_ERROR,
+  SET_LOADING
 } from '../actions/types';
 
-const initialState = {};
+const initialState = {
+  data: [],
+  loading: false,
+  current: null,
+  filtered: null,
+  error: null
+};
 
 export default (state = initialState, actions) => {
   switch (actions.type) {
+    case GET_DATA:
+      return {
+        ...state,
+        loading: false,
+        data: actions.payload
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true
+      };
     default:
       return state;
   }

@@ -1,3 +1,5 @@
+export const GET_DATA = 'GET_DATA';
+export const SAVE_SEARCH = 'SAVE_SEARCH';
 export const DELETE_SEARCH = 'DELETE_SEARCH';
 export const SET_CURRENT = 'SET_CURRENT';
 export const CLEAR_CURRENT = 'CLEAR_CURRENT';

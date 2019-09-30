@@ -11,7 +11,7 @@ const Navbar = ({ user, logout }) => {
   return (
     <nav className="nav-extended blue">
       <div className="nav-wrapper container">
-        <a href="#" className="brand-logo">
+        <a href="#!" className="brand-logo">
           Search<span className="white blue-text r-p">Saver</span>
         </a>
         <ul className="right">
@@ -20,9 +20,9 @@ const Navbar = ({ user, logout }) => {
               About
             </a>
           </li>
-          <li>Hello {user && user.name}</li>
+          <li className="black-text">Hello {user && user.name}</li>
           <li>
-            <a href="" onClick={onLogout}>
+            <a href="#!" onClick={onLogout}>
               <i className="fas fa-sign-out-alt fa-sm" /> Logout
             </a>
           </li>
