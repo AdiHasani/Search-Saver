@@ -1,0 +1,8 @@
+{
+  "mongoDbURI": "mongodb+srv://AlbinJon:AlbiniJoni@searchapp-fpb9i.mongodb.net/test?retryWrites=true&w=majority",
+  "jsonWebTokenSecret": "Kujtesa",
+  "twitterKey": "mOpf6Q3hdQuxwSjbz4h2pkuBw",
+  "twitterSecretKey": "zk9EIvVQdbe0jUjWQCQIF7DvCb4vXfZyUHNRHFWfe5cTkTUmu6",
+  "twitterAccessToken": "1175256964659580929-sTBX3ZBeB8t604p5G5gxqUxtVUpXRP",
+  "twitterAccessTokenSecret": "fu9QlHvpG9CWZBa7nXDn3uYdy15QFyBQ3B66dCX7aVBqp"
+}
