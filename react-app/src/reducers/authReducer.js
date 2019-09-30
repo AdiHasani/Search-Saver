@@ -13,7 +13,7 @@ import {
 const initialState = {
   token: localStorage.getItem('token'),
   isAuthenticated: null,
-  loading: true,
+  loading: false,
   user: null,
   error: null
 };
@@ -38,8 +38,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        isAuthenticated: true,
-        loading: false
+        isAuthenticated: true
       };
     case REGISTER_FAIL:
     case AUTH_ERROR:

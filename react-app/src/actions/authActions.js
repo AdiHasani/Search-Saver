@@ -19,13 +19,14 @@ const config = {
 };
 
 // Load User
-export const loadUser = () => async dispatch => {
-  setLoading();
+const loadUser = async dispatch => {
   if (localStorage.token) {
     setAuthToken(localStorage.token);
   }
 
   try {
+    dispatch(setLoading());
+
     const res = await axios.get('/api/v1/auth');
 
     dispatch({
@@ -39,8 +40,9 @@ export const loadUser = () => async dispatch => {
 
 // Register User
 export const register = formData => async dispatch => {
-  setLoading();
   try {
+    dispatch(setLoading());
+
     const res = await axios.post('/api/v1/users', formData, config);
 
     dispatch({
@@ -48,7 +50,7 @@ export const register = formData => async dispatch => {
       payload: res.data
     });
 
-    loadUser();
+    loadUser(dispatch);
   } catch (err) {
     dispatch({
       type: REGISTER_FAIL,
@@ -59,9 +61,9 @@ export const register = formData => async dispatch => {
 
 // Login User
 export const login = formData => async dispatch => {
-  setLoading();
   try {
-    console.log('Form Data:', formData, 'config:', config);
+    dispatch(setLoading());
+
     const res = await axios.post('/api/v1/auth', formData, config);
 
     dispatch({
@@ -69,7 +71,7 @@ export const login = formData => async dispatch => {
       payload: res.data
     });
 
-    loadUser();
+    loadUser(dispatch);
   } catch (err) {
     dispatch({
       type: LOGIN_FAIL,
@@ -79,21 +81,21 @@ export const login = formData => async dispatch => {
 };
 
 // Logout
-export const logout = () => {
-  return {
+export const logout = () => dispatch => {
+  dispatch({
     type: LOGOUT
-  };
+  });
 };
 
 // Clear Errors
-export const clearErrors = () => {
-  return {
+export const clearErrors = () => dispatch => {
+  dispatch({
     type: CLEAR_ERRORS
-  };
+  });
 };
 
 // Set loading to true
-export const setLoading = () => {
+const setLoading = () => {
   return {
     type: SET_LOADING
   };

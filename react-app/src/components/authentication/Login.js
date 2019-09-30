@@ -1,19 +1,23 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login, clearErrors } from '../../actions/authActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const Login = ({ auth: { isAuthenticated, error }, login, clearErrors }) => {
+const Login = ({
+  auth: { isAuthenticated, error, loading },
+  props,
+  login,
+  clearErrors
+}) => {
   const [user, setUser] = useState({
     email: '',
     password: ''
   });
 
   useEffect(() => {
-    if (isAuthenticated) {
-      onLogin();
+    if (isAuthenticated && !loading) {
+      props.history.push('/');
     }
 
     if (error === 'Please provide a valid username and password.') {
@@ -21,11 +25,9 @@ const Login = ({ auth: { isAuthenticated, error }, login, clearErrors }) => {
       clearErrors();
     }
     // eslint-disable-next-line
-  }, [error, isAuthenticated]);
+  }, [error, isAuthenticated, loading, props.history]);
 
   const { email, password } = user;
-
-  const onLogin = () => <Redirect to="/" />;
 
   const onChange = e => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -48,32 +50,42 @@ const Login = ({ auth: { isAuthenticated, error }, login, clearErrors }) => {
     <Fragment>
       <form>
         <div className="input-field col s12">
-          <label htmlFor="email">Email Address</label>
+          <i className="far fa-user prefix" />
           <input
+            id="user_prefix"
             type="email"
             name="email"
+            className="validate"
             value={email}
             onChange={onChange}
             required
           />
+          <label htmlFor="user_prefix">Email Address</label>
         </div>
         <div className="input-field col s12">
-          <label htmlFor="password">Password</label>
+          <i className="fas fa-key prefix mb-2"></i>
           <input
+            id="pass_prefix"
             type="password"
             name="password"
+            className="validate"
             value={password}
             onChange={onChange}
             required
           />
+          <label htmlFor="pass_prefix">Password</label>
         </div>
         <button
-          className="btn blue darken-2 waves-effect waves-light"
+          className="btn blue darken-2 waves-effect waves-light ml-3"
           onClick={onSubmit}
         >
           {' '}
           Login {'  '}
-          <i className="fas fa-unlock-alt" />{' '}
+          {loading ? (
+            <i className="fas fa-spinner btn-spiner"></i>
+          ) : (
+            <i className="fas fa-unlock-alt" />
+          )}{' '}
         </button>
       </form>
     </Fragment>
@@ -81,11 +93,13 @@ const Login = ({ auth: { isAuthenticated, error }, login, clearErrors }) => {
 };
 
 Login.propTypes = {
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  props: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state, props) => ({
+  auth: state.auth,
+  props: props.props
 });
 
 export default connect(

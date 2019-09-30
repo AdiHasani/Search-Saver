@@ -3,10 +3,7 @@ import React from 'react';
 const SearchBtn = () => {
   return (
     <div className="fixed-action-btn">
-      <a
-        href="#!"
-        className="btn-floating btn-large blue darken-2 modal-trigger"
-      >
+      <a href="#!" className="btn-floating btn-large blue darken-2">
         <i className="fas fa-search"></i>
       </a>
       <ul>

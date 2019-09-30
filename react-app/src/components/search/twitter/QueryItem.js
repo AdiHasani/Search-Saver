@@ -1,19 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { setCurrent } from '../../../actions/searchActions';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const QueryItem = ({ query }) => {
-  const onDelete = () => {
-    M.toast({ html: 'Deleted query' });
+const QueryItem = ({ query, setCurrent }) => {
+  const onDelete = e => {
+    e.preventDefault();
+    M.toast({ html: 'In my TODO list!' });
   };
-  const onEdit = () => {
-    M.toast({ html: 'Edited query' });
-  };
-  const onSubmit = () => {
-    M.toast({ html: 'Submited query' });
-  };
+  const onEdit = e => {
+    e.preventDefault();
+    e.stopPropagation();
 
+    M.toast({ html: 'In my TODO list!' });
+  };
+  const onSubmit = e => {
+    e.preventDefault();
+    setCurrent(query);
+    M.toast({ html: `Searching for: ${query.q}` });
+    e.stopPropagation();
+  };
   return (
     <li className="collection-item">
       <a
@@ -22,7 +30,7 @@ const QueryItem = ({ query }) => {
         onClick={onSubmit}
         style={{ display: 'inline-block' }}
       >
-        {query.text}
+        {query.q}
       </a>
       <a
         href="#!"
@@ -46,4 +54,7 @@ QueryItem.propTypes = {
   query: PropTypes.object.isRequired
 };
 
-export default QueryItem;
+export default connect(
+  null,
+  { setCurrent }
+)(QueryItem);

@@ -6879,7 +6879,7 @@ textarea.materialize-textarea+label:after,
 }
 
 .input-field .prefix.active {
-  color: #26a69a;
+  color: #1565c0;
 }
 
 .input-field .prefix~input,
@@ -9480,6 +9480,10 @@ input[type=range]::-ms-thumb {
 
 /* MaterializedCSS end */
 
+body {
+  overflow-y: auto !important;
+}
+
 .r-p {
   border-radius: 1rem 1rem 0 1rem;
   padding: .2rem .5rem
@@ -9496,6 +9500,15 @@ input[type=range]::-ms-thumb {
 .ml-1 {
   margin-left: 1rem !important;
 }
+
+.ml-2 {
+  margin-left: 2rem !important;
+}
+
+.ml-3 {
+  margin-left: 3rem !important;
+}
+
 
 .twitter-color,
 .twitter-color:hover {
@@ -9517,14 +9530,29 @@ input[type=range]::-ms-thumb {
   width: 90%;
 }
 
+.preloder-container {
+  margin: auto;
+  max-width: 200px;
+  width: 90%;
+}
+
+.search-card {
+  min-height: 300px;
+}
+
 .modal-container {
   margin: auto;
   max-width: 800px;
   width: 90%;
 }
 
-/* Preloder CSS */
+.btn-spiner {
+  /* duration: 360 * ARCTIME / (ARCSTARTROT + (360-ARCSIZE)) */
+  -webkit-animation: container-rotate 1568ms linear infinite;
+  animation: container-rotate 1568ms linear infinite;
+}
 
+/* Preloder CSS */
 .lds-facebook {
   position: relative;
 }
