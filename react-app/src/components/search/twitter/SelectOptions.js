@@ -1,10 +1,10 @@
 import React from 'react';
 
 const SelectOptions = () => {
-  const options = ['option 1', 'option 2', 'option3'];
+  const options = ['Tweets results type', 'popular', 'recent', 'mixed'];
 
   return options.map((o, i) => (
-    <option key={i} value={`${o}`}>
+    <option key={i} value={`${o}`} disabled={i === 0}>
       {o}
     </option>
   ));

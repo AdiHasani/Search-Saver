@@ -20,7 +20,6 @@ const Register = ({
 
   useEffect(() => {
     if (isAuthenticated) {
-      M.toast({ html: 'Registration was successfull' });
       props.history.push('/');
     }
     if (
